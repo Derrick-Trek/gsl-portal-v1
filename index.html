@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GSL Resource Portal</title><link rel="icon" href="/gsl-portal-v1/img/home/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"><link href="/gsl-portal-v1/pagefind/pagefind-ui.css" rel="stylesheet"><style>
+:root{
+  --blue:#0f62c0; --blue-deep:#0b4c96; --ink:#1b2430; --muted:#4a5565;
+  --orange:#f68b21; --orange-text:#b35a00; --ground:#f4f7fb; --line:#dfe5ee;
+  --gender:#584596; --fln:#034ea2;
+}
+*{box-sizing:border-box}
+body{margin:0;font:400 17px/1.55 "Source Sans 3",system-ui,sans-serif;color:var(--ink);background:#fff}
+a{color:inherit}
+.wrap{max-width:1232px;margin:0 auto;padding:0 32px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;font-weight:700;text-wrap:balance}
+
+/* header: unchanged from the live portal */
+.top{height:60px;border-bottom:1px solid var(--line);background:#fff}
+.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top img{height:44px;display:block}
+.top nav{display:flex;gap:12px}
+.pill{display:inline-block;min-height:44px;line-height:28px;background:var(--blue);color:#fff;text-decoration:none;font-weight:600;
+  font-size:15px;padding:8px 16px;border-radius:999px}
+
+/* banner: half the height of the live one, so the HLA titles reach the first screen */
+.banner{background:var(--blue);color:#fff}
+.banner .wrap{display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 48px;padding-top:34px;padding-bottom:34px}
+.banner .intro{flex:1 1 560px}
+.banner h1{margin:0;font-size:clamp(34px,4vw,46px);line-height:1.1}
+.banner .tag{margin:6px 0 0;font-size:19px}
+.banner .lead{margin:14px 0 0;font-size:17px;max-width:68ch;color:#e8f0fb}
+.banner .lead a{color:#fff;font-weight:600;text-underline-offset:3px}
+.search{flex:0 1 380px;display:flex;align-items:center;gap:10px;background:#fff;color:var(--muted);
+  border-radius:10px;padding:13px 16px;font-size:16px}
+.search kbd{margin-left:auto;font:600 12px "Source Sans 3",sans-serif;border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+
+/* section headings */
+.sec{padding-top:40px;padding-bottom:8px}
+.sec h2{margin:0 0 6px;font-size:clamp(24px,2.6vw,30px);color:var(--ink)}
+.sec .sub{margin:0 0 22px;color:var(--muted)}
+
+/* the six HLAs: the loudest thing on the page */
+.hla-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr))}
+.hla{display:flex;flex-direction:column;background:#fff;border-radius:14px;overflow:hidden;
+  box-shadow:0 1px 2px rgba(20,40,70,.10),0 12px 26px -16px rgba(20,40,70,.38)}
+.hla .pic{position:relative;display:block}
+.hla .pic img{display:block;width:100%;aspect-ratio:16/7;object-fit:cover;background:var(--ground)}
+.badge{position:absolute;left:14px;bottom:12px;background:var(--orange);color:#1b1206;
+  font:700 14px/1 "Source Sans 3",sans-serif;letter-spacing:.04em;padding:7px 11px;border-radius:6px}
+.hla .body{display:flex;flex-direction:column;flex:1;padding:16px 20px 20px}
+.hla h3{margin:0;font:700 21px/1.25 "Source Sans 3",sans-serif;color:var(--blue-deep);text-wrap:balance}
+.hla h3 a{text-decoration:none}
+.hla h3 a:hover{text-decoration:underline}
+/* the questions are plain text now: on the live page they are blue but lead nowhere */
+.qs{margin:10px 0 16px;padding:0 0 0 18px;color:var(--muted);font-size:15.5px;line-height:1.45}
+.qs li{margin:0 0 4px}
+.qs-toggle{display:none}
+.acts{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;text-decoration:none;font-weight:700;font-size:16px;border-radius:8px;padding:10px 16px}
+.btn.main{background:var(--blue);color:#fff}
+.btn.alt{background:#fff;color:var(--blue-deep);box-shadow:inset 0 0 0 2px var(--blue)}
+
+/* tools for the HLA materials: calm, no decorative shapes behind the text */
+.tools{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr))}
+.tool{display:block;text-decoration:none;background:var(--ground);border-radius:12px;padding:18px 20px}
+.tool h3{margin:0 0 6px;font:700 19px/1.3 "Source Sans 3",sans-serif;color:var(--blue-deep)}
+.tool p{margin:0;color:var(--muted);font-size:16px}
+.tool .go{display:inline-block;margin-top:10px;font-weight:700;color:var(--blue-deep)}
+
+/* more from GSL: smaller cards, each in its own project colour */
+.more{background:var(--ground);margin-top:40px;padding-bottom:44px}
+.proj-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr))}
+.proj{display:flex;flex-direction:column;text-decoration:none;background:#fff;border-radius:12px;overflow:hidden;
+  border-top:6px solid var(--c,#0f62c0)}
+.proj .thumb{display:block;height:132px;overflow:hidden;background:var(--c)}
+.proj .thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.proj .thumb.logo img{object-fit:contain;padding:14px 22px}
+.proj .t{padding:14px 16px 18px}
+.proj h3{margin:0 0 6px;font:700 18px/1.3 "Source Sans 3",sans-serif;color:var(--ink)}
+.proj p{margin:0;color:var(--muted);font-size:15px;line-height:1.45}
+.proj .ext{display:block;margin-top:8px;font-size:14px;font-weight:600;color:var(--muted)}
+
+/* learn about HLAs: one video, not three */
+.learn{display:grid;gap:24px 40px;align-items:center;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))}
+.learn .txt p{margin:0;color:var(--muted)}
+.learn .vid{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#000}
+.learn.has-web .ring{max-width:400px;justify-self:center}
+.learn.has-web .vid{grid-column:1/-1;max-width:780px;justify-self:center}
+
+.ring{width:100%;height:auto}
+.ring .links line{stroke:#c9d6e8;stroke-width:1.5}
+.ring .core{fill:var(--blue)}
+.ring .core-t{fill:#fff;font:700 15px "Source Sans 3",sans-serif}
+.ring .node circle{fill:#fff;stroke:var(--blue);stroke-width:3;transition:fill .2s ease,stroke .2s ease}
+.ring .node text{fill:var(--blue-deep);font:700 17px "Source Sans 3",sans-serif;pointer-events:none;transition:fill .2s ease}
+.ring .node{cursor:pointer}
+.ring .node:focus-visible{outline:none}
+.ring .node:hover circle,.ring .node:focus-visible circle{fill:var(--orange);stroke:#fff}
+.ring .node:hover text,.ring .node:focus-visible text{fill:#1b1206}
+
+
+footer{margin-top:48px;border-top:1px solid var(--line);padding:32px 0 48px}
+footer .cols{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+footer h2.fh{margin:0 0 10px;font:700 18px "Playfair Display",serif;color:var(--blue-deep)}
+footer a{display:block;text-decoration:none;margin:0 0 8px;color:var(--ink)}
+footer a:hover{text-decoration:underline}
+.note{font-size:13px;color:var(--muted)}
+
+/* phone: compact HLA rows instead of four screens of cards */
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .top nav .pill:first-child{display:none}
+  .banner .wrap{padding-top:22px;padding-bottom:22px}
+  .banner .lead{font-size:16px}
+  .search kbd{display:none}
+  .hla-grid{gap:12px}
+  .hla{display:grid;grid-template-columns:96px 1fr;border-radius:12px}
+  .hla .pic img{height:100%;aspect-ratio:auto;min-height:118px}
+  .badge{left:8px;bottom:8px;font-size:12px;padding:5px 7px}
+  .hla .body{padding:12px 14px 14px}
+  .hla h3{font-size:18px}
+  .qs{display:none}
+  .qs-toggle{display:block;margin:0 0 8px;font-size:15px;color:var(--muted)}
+  .qs-toggle summary{cursor:pointer;font-weight:600;color:var(--blue-deep);padding:10px 0}
+  .qs-toggle ul{margin:6px 0 0;padding-left:18px}
+  .btn{font-size:15px;padding:12px 14px}
+}
+
+/* hover and keyboard focus: cards lift, photos ease in, buttons fill */
+.hla,.tool,.proj,.pill,.btn{transition:transform .22s ease,box-shadow .22s ease,background-color .18s ease,color .18s ease}
+.hla .pic img,.proj .thumb img{transition:transform .5s ease}
+.hla .pic{overflow:hidden}
+@media (hover:hover){
+  .hla:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(20,40,70,.10),0 22px 38px -18px rgba(20,40,70,.50)}
+  .hla:hover .pic img{transform:scale(1.05)}
+  .tool:hover{transform:translateY(-3px);background:#e9f0fa;box-shadow:0 14px 26px -18px rgba(20,40,70,.45)}
+  .tool:hover .go{text-decoration:underline;text-underline-offset:3px}
+  .proj:hover{transform:translateY(-4px);box-shadow:0 18px 32px -18px rgba(20,40,70,.50)}
+  .proj:hover .thumb img{transform:scale(1.05)}
+  .proj:hover h3{color:var(--blue-deep)}
+  .btn.main:hover{background:var(--blue-deep)}
+  .btn.alt:hover{background:var(--blue);color:#fff}
+  .pill:hover{background:var(--blue-deep)}
+  footer a:hover{color:var(--blue-deep)}
+}
+.hla:has(:focus-visible){box-shadow:0 0 0 3px #fff,0 0 0 6px var(--orange)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+  .hla:hover,.tool:hover,.proj:hover{transform:none}
+  .hla:hover .pic img,.proj:hover .thumb img{transform:none}
+}
+
+.search{border:0;font:inherit;font-size:16px;cursor:pointer;text-align:left}.search:hover{box-shadow:0 0 0 3px #bcd3f3}</style><link rel="stylesheet" href="/gsl-portal-v1/_astro/Base.Dw_triSE.css"></head><body><a class="skip" href="#main">Skip to content</a><header class="site-top" data-pagefind-ignore><div class="wrap"><a class="logo" href="/gsl-portal-v1/" aria-label="GSL Resource Portal home"><img src="/gsl-portal-v1/img/home/logo.png" alt="Global School Leaders" width="88" height="44"></a><nav class="site-nav" aria-label="Main"><details class="menu" data-menu><summary>High-leverage actions <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="menu-panel"><a href="/gsl-portal-v1/hla/1/"><span class="n">HLA 1</span><span class="t">Co-create a supportive culture of high expectations</span></a><a href="https://gslresourceportal.globalschoolleaders.org/docs/what-is-effective-teaching-practices" target="_blank" rel="noopener"><span class="n">HLA 2</span><span class="t">Establish effective teaching practices<small>Opens the current portal ↗</small></span></a><a href="https://gslresourceportal.globalschoolleaders.org/docs/hla3-introduction" target="_blank" rel="noopener"><span class="n">HLA 3</span><span class="t">Build teacher skills through observation and feedback<small>Opens the current portal ↗</small></span></a><a href="https://gslresourceportal.globalschoolleaders.org/docs/hla4-introduction" target="_blank" rel="noopener"><span class="n">HLA 4</span><span class="t">Use data for continuous improvement<small>Opens the current portal ↗</small></span></a><a href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-shared-leadership" target="_blank" rel="noopener"><span class="n">HLA 5</span><span class="t">Share leadership across the school<small>Opens the current portal ↗</small></span></a><a href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-equity" target="_blank" rel="noopener"><span class="n">HLA 6</span><span class="t">Identify and disrupt inequitable patterns<small>Opens the current portal ↗</small></span></a><a class="all" href="/gsl-portal-v1/#hla-h">See all six on the home page →</a></div></details></nav><div class="pills"><a class="pill" href="https://youtu.be/vtG3a3-oAIY" target="_blank" rel="noopener">Watch Portal Tour</a><a class="pill" href="mailto:portal@globalschoolleaders.org">Contact Support</a></div></div></header><main id="main" data-pagefind-body>
+<section class="banner"><div class="wrap">
+  <div class="intro">
+    <h1>GSL Resource Portal</h1>
+    <p class="tag">Your go-to hub for research and content on school leadership.</p>
+    <p class="lead">We’ve integrated academic research and good practices from across the world to develop versatile, evidence-based school leadership training resources. These target six high-leverage actions (HLAs) to improve student outcomes. <a href="#learn">Learn about HLAs</a></p>
+  </div>
+  <button class="search" type="button" data-open-search aria-haspopup="dialog"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search the portal<kbd>CTRL + K</kbd></button>
+</div></section>
+
+<section class="wrap sec" aria-labelledby="hla-h">
+  <h2 id="hla-h">What do you want to support school leaders to do?</h2>
+  <div class="hla-grid">
+    <article class="hla">
+      <a class="pic" href="/gsl-portal-v1/hla/1/" tabindex="-1" aria-hidden="true"><img src="/gsl-portal-v1/img/home/hla1.png" alt="A girl in a classroom holds up a paper flower"><span class="badge">HLA 1</span></a>
+      <div class="body">
+        <h3><a href="/gsl-portal-v1/hla/1/">Co-create a supportive culture of high expectations</a></h3>
+        <ul class="qs"><li>How can school leaders shape school culture?</li><li>How can school leaders build a culture of high expectations?</li><li>How can school leaders develop a supportive classroom environment?</li><li>How can school leaders engage families in building school culture?</li></ul>
+        <details class="qs-toggle"><summary>Questions this HLA answers</summary><ul><li>How can school leaders shape school culture?</li><li>How can school leaders build a culture of high expectations?</li><li>How can school leaders develop a supportive classroom environment?</li><li>How can school leaders engage families in building school culture?</li></ul></details>
+        <div class="acts"><a class="btn main" href="/gsl-portal-v1/hla/1/">Explore HLA 1</a><a class="btn alt" href="/gsl-portal-v1/hla/1/research/">See the research</a></div>
+      </div>
+    </article>
+    <article class="hla">
+      <a class="pic" href="https://gslresourceportal.globalschoolleaders.org/docs/what-is-effective-teaching-practices" tabindex="-1" aria-hidden="true"><img src="/gsl-portal-v1/img/home/hla2.jpg" alt="A teacher sits on the floor with a group of young children"><span class="badge">HLA 2</span></a>
+      <div class="body">
+        <h3><a href="https://gslresourceportal.globalschoolleaders.org/docs/what-is-effective-teaching-practices">Establish effective teaching practices</a></h3>
+        <ul class="qs"><li>How can school leaders identify effective teaching practices?</li><li>How can school leaders support teachers to adopt new practices?</li><li>How can school leaders ensure that new teaching practices are sustained?</li></ul>
+        <details class="qs-toggle"><summary>Questions this HLA answers</summary><ul><li>How can school leaders identify effective teaching practices?</li><li>How can school leaders support teachers to adopt new practices?</li><li>How can school leaders ensure that new teaching practices are sustained?</li></ul></details>
+        <div class="acts"><a class="btn main" href="https://gslresourceportal.globalschoolleaders.org/docs/what-is-effective-teaching-practices">Explore HLA 2</a><a class="btn alt" href="https://gslresourceportal.globalschoolleaders.org/docs/hla2-research-highlights">See the research</a></div>
+      </div>
+    </article>
+    <article class="hla">
+      <a class="pic" href="https://gslresourceportal.globalschoolleaders.org/docs/hla3-introduction" tabindex="-1" aria-hidden="true"><img src="/gsl-portal-v1/img/home/hla3.png" alt="A teacher stands at the front of a classroom of students at desks"><span class="badge">HLA 3</span></a>
+      <div class="body">
+        <h3><a href="https://gslresourceportal.globalschoolleaders.org/docs/hla3-introduction">Build teacher skills through observation and feedback</a></h3>
+        <ul class="qs"><li>How can school leaders find time for observation and feedback?</li><li>How can school leaders observe lessons accurately?</li><li>How can school leaders provide effective and non threatening feedback?</li><li>How can school leaders promote peer observation?</li></ul>
+        <details class="qs-toggle"><summary>Questions this HLA answers</summary><ul><li>How can school leaders find time for observation and feedback?</li><li>How can school leaders observe lessons accurately?</li><li>How can school leaders provide effective and non threatening feedback?</li><li>How can school leaders promote peer observation?</li></ul></details>
+        <div class="acts"><a class="btn main" href="https://gslresourceportal.globalschoolleaders.org/docs/hla3-introduction">Explore HLA 3</a><a class="btn alt" href="https://gslresourceportal.globalschoolleaders.org/docs/hla3-evidence">See the research</a></div>
+      </div>
+    </article>
+    <article class="hla">
+      <a class="pic" href="https://gslresourceportal.globalschoolleaders.org/docs/hla4-introduction" tabindex="-1" aria-hidden="true"><img src="/gsl-portal-v1/img/home/hla4.jpg" alt="School leaders at a training session watch a projected slide"><span class="badge">HLA 4</span></a>
+      <div class="body">
+        <h3><a href="https://gslresourceportal.globalschoolleaders.org/docs/hla4-introduction">Use data for continuous improvement</a></h3>
+        <ul class="qs"><li>How can school leaders use data for school improvement?</li><li>How can school leaders create and plan for school goals?</li><li>How can school leaders enlist others in using data effectively?</li></ul>
+        <details class="qs-toggle"><summary>Questions this HLA answers</summary><ul><li>How can school leaders use data for school improvement?</li><li>How can school leaders create and plan for school goals?</li><li>How can school leaders enlist others in using data effectively?</li></ul></details>
+        <div class="acts"><a class="btn main" href="https://gslresourceportal.globalschoolleaders.org/docs/hla4-introduction">Explore HLA 4</a><a class="btn alt" href="https://gslresourceportal.globalschoolleaders.org/docs/hla4-research-highlights">See the research</a></div>
+      </div>
+    </article>
+    <article class="hla">
+      <a class="pic" href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-shared-leadership" tabindex="-1" aria-hidden="true"><img src="/gsl-portal-v1/img/home/hla5.png" alt="Four teachers talk around a table covered in papers"><span class="badge">HLA 5</span></a>
+      <div class="body">
+        <h3><a href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-shared-leadership">Share leadership across the school</a></h3>
+        <ul class="qs"><li>How can school leaders develop people’s leadership capacity?</li><li>How can school leaders share leadership across the school?</li><li>How can school leaders develop effective teams?</li><li>How can school leaders share leadership with students and families?</li></ul>
+        <details class="qs-toggle"><summary>Questions this HLA answers</summary><ul><li>How can school leaders develop people’s leadership capacity?</li><li>How can school leaders share leadership across the school?</li><li>How can school leaders develop effective teams?</li><li>How can school leaders share leadership with students and families?</li></ul></details>
+        <div class="acts"><a class="btn main" href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-shared-leadership">Explore HLA 5</a><a class="btn alt" href="https://gslresourceportal.globalschoolleaders.org/docs/hla5-research-highlights">See the research</a></div>
+      </div>
+    </article>
+    <article class="hla">
+      <a class="pic" href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-equity" tabindex="-1" aria-hidden="true"><img src="/gsl-portal-v1/img/home/hla6.png" alt="Students write on a wall chart at the front of a classroom"><span class="badge">HLA 6</span></a>
+      <div class="body">
+        <h3><a href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-equity">Identify and disrupt inequitable patterns</a></h3>
+        <ul class="qs"><li>How can school leaders identify the barriers to learning equity?</li><li>How can school leaders use data to uncover inequitable patterns?</li><li>How can school leaders engage teachers and families in making school more equitable?</li></ul>
+        <details class="qs-toggle"><summary>Questions this HLA answers</summary><ul><li>How can school leaders identify the barriers to learning equity?</li><li>How can school leaders use data to uncover inequitable patterns?</li><li>How can school leaders engage teachers and families in making school more equitable?</li></ul></details>
+        <div class="acts"><a class="btn main" href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-equity">Explore HLA 6</a><a class="btn alt" href="https://gslresourceportal.globalschoolleaders.org/docs/hla6-evidence">See the research</a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="wrap sec" aria-labelledby="tools-h">
+  <h2 id="tools-h">Using the HLA training materials</h2>
+  <div class="tools">
+    <a class="tool" href="https://gslresourceportal.globalschoolleaders.org/docs/training-tools"><h3>Training tools</h3><p>All HLA training materials connect you to a variety of tools such as case studies, templates, planners, scenarios, videos, and checklists. Explore a curated list of training tools available for each HLA.</p><span class="go">Explore training tools →</span></a>
+    <a class="tool" href="https://gslresourceportal.globalschoolleaders.org/docs/how-to-guides"><h3>How-to Guides</h3><p>We’ve created how-to guides to help you adapt and contextualize all the High Leverage Action (HLA) training materials. Explore the how-to guides to learn how to implement these training materials confidently.</p><span class="go">Explore how-to guides →</span></a>
+  </div>
+</section>
+
+<section class="more" aria-labelledby="more-h"><div class="wrap sec">
+  <h2 id="more-h">More from GSL</h2>
+  <div class="proj-grid">
+    <a class="proj" style="--c:var(--gender)" href="https://gslresourceportal.globalschoolleaders.org/docs/gender-resources">
+      <span class="thumb logo"><img src="/gsl-portal-v1/img/home/gender-wordmark.png" alt=""></span>
+      <span class="t"><h3>Gender Responsive School Leadership</h3><p>A free resource set – a storybook, a guidebook and a rubric – designed to support school leaders in this work.</p></span></a>
+    <a class="proj" style="--c:var(--fln)" href="https://gslresourceportal.globalschoolleaders.org/docs/lead-fln">
+      <span class="thumb"><img src="/gsl-portal-v1/img/home/fln.jpg" alt=""></span>
+      <span class="t"><h3>FLN-focused instructional leadership</h3><p>A collection of evidence-informed strategies and guidance for school leaders and organizations interested in improving foundational learning at the school level.</p></span></a>
+    <a class="proj" style="--c:#2e7d6b" href="https://gslresourceportal.globalschoolleaders.org/docs/introduction-ocg">
+      <span class="thumb logo" style="background:#fff"><img src="/gsl-portal-v1/img/home/community.png" alt=""></span>
+      <span class="t"><h3>Online Community Guide</h3><p>The online community guide links to a variety of resources such as best practices, tools, templates, and checklists. Explore a curated list of resources tailored for each stage of your online community's journey.</p></span></a>
+    <a class="proj" style="--c:#8a5a00" href="https://sites.google.com/globalschoolleaders.org/gslo/home">
+      <span class="thumb" style="display:flex;align-items:center;justify-content:center;color:#fff;font:700 28px 'Playfair Display',serif">Upya</span>
+      <span class="t"><h3>Upya: Education in Emergencies</h3><span class="ext">Opens a separate site ↗</span></span></a>
+  </div>
+</div></section>
+
+<section class="wrap sec" id="learn" aria-labelledby="learn-h">
+  <h2 id="learn-h">Learn About HLAs</h2>
+  <div class="learn has-web">
+    <div class="txt"><p>Improving school leadership is an essential part of ensuring that all children receive an excellent education. But school leadership is so complex that it is hard to know what to prioritize since there are so many things that could affect teaching and learning! After reviewing the literature on school leadership, consulting with experts, and working with practitioners and school leaders, we have identified six high leverage actions (HLAs) for school leaders. These actions are intricately interconnected, forming a cohesive framework for effective school leadership. Please watch the video below to learn more about HLA and explore how it's structured on the portal through a detailed walkthrough.</p></div>
+    <svg class="ring" viewBox="0 0 420 420" role="group" aria-labelledby="ring-t"><title id="ring-t">The six high-leverage actions, each connected to the others</title><g class="links"><line x1="210.0" y1="60.0" x2="339.9" y2="135.0"/><line x1="210.0" y1="60.0" x2="339.9" y2="285.0"/><line x1="210.0" y1="60.0" x2="210.0" y2="360.0"/><line x1="210.0" y1="60.0" x2="80.1" y2="285.0"/><line x1="210.0" y1="60.0" x2="80.1" y2="135.0"/><line x1="339.9" y1="135.0" x2="339.9" y2="285.0"/><line x1="339.9" y1="135.0" x2="210.0" y2="360.0"/><line x1="339.9" y1="135.0" x2="80.1" y2="285.0"/><line x1="339.9" y1="135.0" x2="80.1" y2="135.0"/><line x1="339.9" y1="285.0" x2="210.0" y2="360.0"/><line x1="339.9" y1="285.0" x2="80.1" y2="285.0"/><line x1="339.9" y1="285.0" x2="80.1" y2="135.0"/><line x1="210.0" y1="360.0" x2="80.1" y2="285.0"/><line x1="210.0" y1="360.0" x2="80.1" y2="135.0"/><line x1="80.1" y1="285.0" x2="80.1" y2="135.0"/></g><circle class="core" cx="210" cy="210" r="68"/><text class="core-t" x="210" y="207" text-anchor="middle">improve student</text><text class="core-t" x="210" y="226" text-anchor="middle">outcomes</text><a class="node n1" href="/gsl-portal-v1/hla/1/" aria-label="HLA 1: Co-create a supportive culture of high expectations"><title>HLA 1: Co-create a supportive culture of high expectations</title><circle cx="210.0" cy="60.0" r="44"/><text x="210.0" y="67.0" text-anchor="middle">HLA 1</text></a><a class="node n2" href="https://gslresourceportal.globalschoolleaders.org/docs/what-is-effective-teaching-practices" aria-label="HLA 2: Establish effective teaching practices"><title>HLA 2: Establish effective teaching practices</title><circle cx="339.9" cy="135.0" r="44"/><text x="339.9" y="142.0" text-anchor="middle">HLA 2</text></a><a class="node n3" href="https://gslresourceportal.globalschoolleaders.org/docs/hla3-introduction" aria-label="HLA 3: Build teacher skills through observation and feedback"><title>HLA 3: Build teacher skills through observation and feedback</title><circle cx="339.9" cy="285.0" r="44"/><text x="339.9" y="292.0" text-anchor="middle">HLA 3</text></a><a class="node n4" href="https://gslresourceportal.globalschoolleaders.org/docs/hla4-introduction" aria-label="HLA 4: Use data for continuous improvement"><title>HLA 4: Use data for continuous improvement</title><circle cx="210.0" cy="360.0" r="44"/><text x="210.0" y="367.0" text-anchor="middle">HLA 4</text></a><a class="node n5" href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-shared-leadership" aria-label="HLA 5: Share leadership across the school"><title>HLA 5: Share leadership across the school</title><circle cx="80.1" cy="285.0" r="44"/><text x="80.1" y="292.0" text-anchor="middle">HLA 5</text></a><a class="node n6" href="https://gslresourceportal.globalschoolleaders.org/docs/1-what-is-equity" aria-label="HLA 6: Identify and disrupt inequitable patterns"><title>HLA 6: Identify and disrupt inequitable patterns</title><circle cx="80.1" cy="135.0" r="44"/><text x="80.1" y="142.0" text-anchor="middle">HLA 6</text></a></svg>
+    <iframe class="vid" src="https://www.youtube.com/embed/z7Xdanbee4U" title="HLA Walkthrough Video" loading="lazy" allowfullscreen></iframe>
+  </div>
+</section>
+</main><footer class="site-foot" data-pagefind-ignore><div class="wrap"><div class="cols"><div><h2 class="fh">Quick Links</h2><a href="https://zfrmz.in/0X7fjSR2Kg1JTcQrCPTC">Feedback Form</a><a href="https://youtu.be/hXLahCVZj9s">GSL Resource Portal Walkthrough</a></div><div><h2 class="fh">GSL Projects</h2><a href="https://gslresourceportal.globalschoolleaders.org/docs/lead-fln">FLN-focused instructional leadership</a><a href="https://gslresourceportal.globalschoolleaders.org/docs/gender-resources">Gender Responsive School Leadership</a><a href="https://sites.google.com/globalschoolleaders.org/gslo/home">Upya: Education in Emergencies ↗</a></div><div><h2 class="fh">Other Resources</h2><a href="https://bit.ly/4bSCduG">Evidence Review</a><a href="https://bit.ly/3Ols0gs">Policy Toolkit</a><a href="https://bit.ly/3PteCHG">Gender Review</a></div><div><h2 class="fh">Global School Leaders</h2><a href="https://www.globalschoolleaders.org/aboutus/">About</a><a href="mailto:info@globalschoolleaders.org">Contact Us</a></div></div><p class="note">Version 1 (kept as built 27 Sep 2026), local build. Not live.</p></div></footer><dialog class="search-dlg" aria-label="Search the portal"><div class="dlg-head"><span>Search the portal</span><button class="close" type="button" data-close-search>Close (Esc)</button></div><div id="search"></div></dialog><script>
+(function () {
+  var dlg = document.querySelector('.search-dlg'), ready = false;
+  function open() {
+    if (!ready) {
+      ready = true;
+      var s = document.createElement('script');
+      s.src = '/gsl-portal-v1/pagefind/pagefind-ui.js';
+      s.onload = function () {
+        new PagefindUI({ baseUrl: '/gsl-portal-v1/', element: '#search', showSubResults: true, showImages: false,
+          translations: { placeholder: 'Search the portal' } });
+        var i = dlg.querySelector('input'); if (i) i.focus();
+      };
+      document.head.appendChild(s);
+    }
+    dlg.showModal();
+    var i = dlg.querySelector('input'); if (i) i.focus();
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-open-search]')) { e.preventDefault(); open(); }
+    if (e.target.closest('[data-close-search]') || e.target === dlg) dlg.close();
+    // close an open menu when you click outside it
+    document.querySelectorAll('details[data-menu][open]').forEach(function (d) { if (!d.contains(e.target)) d.open = false; });
+  });
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open(); }
+    if (e.key === 'Escape') document.querySelectorAll('details[data-menu][open]').forEach(function (d) { d.open = false; });
+  });
+})();
+</script></body></html>
